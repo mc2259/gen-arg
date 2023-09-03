@@ -188,7 +188,7 @@ def main():
         trainer.test(model, datamodule=dm) #also loads training dataloader 
     else:
         dm.setup('fit')
-        trainer.fit(model, train_dataloaders=dm.train_dataloader(), val_dataloaders=dm.val_dataloader(), datamodule=dm)
+        trainer.fit(model, train_dataloaders=dm.train_dataloader(), val_dataloaders=dm.val_dataloader())
     
 
     
