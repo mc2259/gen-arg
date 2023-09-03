@@ -17,9 +17,10 @@ logger = logging.getLogger(__name__)
 class GenIEModel(pl.LightningModule):
     def __init__(self, args):
         super().__init__() 
-        self.hparams = args 
+        # Convert args to dictionary
+        dict_args = vars(args)
+        self.hparams.update(dict_args)
     
-
         self.config=BartConfig.from_pretrained('facebook/bart-large')
         self.tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
         self.tokenizer.add_tokens([' <arg>',' <tgr>'])

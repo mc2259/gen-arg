@@ -172,14 +172,12 @@ def main():
         min_epochs=args.num_train_epochs,
         max_epochs=args.num_train_epochs, 
         gpus=args.gpus, 
-        checkpoint_callback=checkpoint_callback, 
+        callbacks = [checkpoint_callback], 
         accumulate_grad_batches=args.accumulate_grad_batches,
         gradient_clip_val=args.gradient_clip_val, 
         num_sanity_val_steps=0, 
         val_check_interval=0.5, # use float to check every n epochs 
         precision=16 if args.fp16 else 32,
-        callbacks = [lr_logger, ],
-
     ) 
 
     if args.load_ckpt:
