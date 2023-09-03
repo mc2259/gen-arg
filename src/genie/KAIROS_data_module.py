@@ -236,7 +236,7 @@ class KAIROSDataModule(pl.LightningDataModule):
             print('longest target {}'.format(max_tgt))
     
     def train_dataloader(self):
-        dataset = IEDataset('preprocessed_{}/train.jsonl'.format(self.hparams.dataset))
+        dataset = IEDataset('data/wikievents/train.jsonl'.format(self.hparams.dataset))
         
         dataloader = DataLoader(dataset, 
             pin_memory=True, num_workers=2, 
@@ -247,7 +247,7 @@ class KAIROSDataModule(pl.LightningDataModule):
 
     
     def val_dataloader(self):
-        dataset = IEDataset('preprocessed_{}/val.jsonl'.format(self.hparams.dataset))
+        dataset = IEDataset('data/wikievents/val.jsonl'.format(self.hparams.dataset))
         
         dataloader = DataLoader(dataset, pin_memory=True, num_workers=2, 
             collate_fn=my_collate,
@@ -255,7 +255,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         return dataloader
 
     def test_dataloader(self):
-        dataset = IEDataset('preprocessed_{}/test.jsonl'.format(self.hparams.dataset))
+        dataset = IEDataset('data/wikievents/test.jsonl'.format(self.hparams.dataset))
         
         dataloader = DataLoader(dataset, pin_memory=True, num_workers=2, 
             collate_fn=my_collate, 
