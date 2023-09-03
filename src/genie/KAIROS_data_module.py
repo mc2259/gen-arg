@@ -247,7 +247,7 @@ class KAIROSDataModule(pl.LightningDataModule):
 
     
     def val_dataloader(self):
-        dataset = IEDataset('data/wikievents/val.jsonl'.format(self.hparams.dataset))
+        dataset = IEDataset('data/wikievents/dev.jsonl'.format(self.hparams.dataset))
         
         dataloader = DataLoader(dataset, pin_memory=True, num_workers=2, 
             collate_fn=my_collate,
