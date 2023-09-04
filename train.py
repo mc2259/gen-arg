@@ -178,8 +178,6 @@ def main():
         num_sanity_val_steps=0, 
         val_check_interval=0.5, # use float to check every n epochs 
         precision=16 if args.fp16 else 32,
-        progress_bar_refresh_rate=1,
-        deterministic=True,
         log_every_n_steps=10,
         fast_dev_run=True
     ) 
