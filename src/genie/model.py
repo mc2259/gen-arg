@@ -136,7 +136,7 @@ class GenIEModel(pl.LightningModule):
 
 
     def configure_optimizers(self):
-        self.train_len = len(self.train_dataloader())
+        self.train_len = len(self.trainer._data_connector._train_dataloader_source.dataloader())
         if self.hparams.max_steps > 0:
             t_total = self.hparams.max_steps
             self.hparams.num_train_epochs = self.hparams.max_steps // self.train_len // self.hparams.accumulate_grad_batches + 1
