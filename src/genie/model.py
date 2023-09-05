@@ -154,13 +154,7 @@ class GenIEModel(pl.LightningModule):
             },
             {"params": [p for n, p in self.model.named_parameters() if any(nd in n for nd in no_decay)], "weight_decay": 0.0},
         ]
-        optimizer = AdamW(optimizer_grouped_parameters, lr=self.hparams.learning_rate, eps=self.hparams.adam_epsilon)
+        optimizer = torch.optim.Adam(optimizer_grouped_parameters, lr=self.hparams.learning_rate, eps=self.hparams.adam_epsilon)
         # scheduler is called only once per epoch by default 
-        scheduler =  get_linear_schedule_with_warmup(optimizer, num_warmup_steps=self.hparams.warmup_steps, num_training_steps=t_total)
-        scheduler_dict = {
-            'scheduler': scheduler,
-            'interval': 'step',
-            'name': 'linear-schedule',
-        }
 
-        return [optimizer, ], [scheduler_dict,]
+        return [optimizer]
