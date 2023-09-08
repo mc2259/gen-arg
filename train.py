@@ -179,7 +179,6 @@ def main():
         val_check_interval=0.5, # use float to check every n epochs 
         precision=16 if args.fp16 else 32,
         log_every_n_steps=10,
-        fast_dev_run=True
     ) 
 
     if args.load_ckpt:
