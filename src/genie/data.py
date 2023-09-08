@@ -12,7 +12,6 @@ def my_collate(batch):
     'tgt_token_ids': tgt_tokens['input_ids'],
     'tgt_attn_mask': tgt_tokens['attention_mask'],
     '''
-    print(batch[0].keys())
     doc_keys = [ex['doc_key'] for ex in batch]
     input_token_ids = torch.stack([torch.LongTensor(ex['input_token_ids']) for ex in batch]) 
     input_attn_mask = torch.stack([torch.BoolTensor(ex['input_attn_mask']) for ex in batch])
