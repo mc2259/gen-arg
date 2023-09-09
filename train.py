@@ -172,7 +172,7 @@ def main():
         min_epochs=args.num_train_epochs,
         max_epochs=args.num_train_epochs, 
         gpus=args.gpus, 
-        callbacks = [checkpoint_callback, logger, lr_logger], 
+        callbacks = [checkpoint_callback, lr_logger], 
         accumulate_grad_batches=args.accumulate_grad_batches,
         gradient_clip_val=args.gradient_clip_val, 
         num_sanity_val_steps=0, 
