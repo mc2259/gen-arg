@@ -139,7 +139,7 @@ def main():
     checkpoint_callback = ModelCheckpoint(
         dirpath=args.ckpt_dir,
         save_top_k=2,
-        monitor='valid_loss',
+        monitor='val/loss',
         mode='min',
         save_weights_only=True,
         filename='{epoch}', # this cannot contain slashes 
@@ -172,7 +172,7 @@ def main():
         min_epochs=args.num_train_epochs,
         max_epochs=args.num_train_epochs, 
         gpus=args.gpus, 
-        callbacks = [checkpoint_callback], 
+        callbacks = [checkpoint_callback, logger, lr_logger], 
         accumulate_grad_batches=args.accumulate_grad_batches,
         gradient_clip_val=args.gradient_clip_val, 
         num_sanity_val_steps=0, 
