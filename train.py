@@ -139,7 +139,7 @@ def main():
     checkpoint_callback = ModelCheckpoint(
         dirpath=args.ckpt_dir,
         save_top_k=2,
-        monitor='val/loss'
+        monitor='val/loss',
         mode='min',
         save_weights_only=True,
         filename='{epoch}', # this cannot contain slashes 
