@@ -93,8 +93,9 @@ class GenIEModel(pl.LightningModule):
     def validation_epoch_end(self, outputs):
         avg_loss = torch.mean(torch.stack(outputs))
         log = {
-            'val/loss': avg_loss, 
-        } 
+            'val/loss': avg_loss,
+        }
+        # logger.info('Validation loss: {}'.format(avg_loss))
         return {
             'loss': avg_loss, 
             'log': log 
