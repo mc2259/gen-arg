@@ -95,6 +95,7 @@ class GenIEModel(pl.LightningModule):
         log = {
             'val/loss': avg_loss,
         }
+        log('val/loss', avg_loss)
         # logger.info('Validation loss: {}'.format(avg_loss))
         return {
             'loss': avg_loss, 
