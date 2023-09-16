@@ -194,7 +194,6 @@ class BartConstrainedGen(PreTrainedModel):
             past_key_values=past_key_values,
             output_attentions=output_attentions,
             output_hidden_states=output_hidden_states,
-            input_embeds = input_embeds,
             return_dict=return_dict,)
 
             
