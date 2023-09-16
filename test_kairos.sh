@@ -6,7 +6,7 @@ MODEL=constrained-gen
 
 rm -rf checkpoints/${CKPT_NAME}-pred
 python train.py --model=$MODEL --ckpt_name=${CKPT_NAME}-pred \
-    --load_ckpt=checkpoints/${CKPT_NAME}/epoch=1-v0.ckpt \
+    --load_ckpt=checkpoints/${CKPT_NAME}/epoch=0-v1.ckpt \
     --dataset=KAIROS \
     --eval_only \
     --mark_trigger \
