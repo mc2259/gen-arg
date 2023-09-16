@@ -96,6 +96,7 @@ class GenIEModel(pl.LightningModule):
             'val/loss': avg_loss,
         }
         # logger.info('Validation loss: {}'.format(avg_loss))
+        self.model.save_pretrained('checkpoints/{}/'.format(self.hparams.ckpt_name))
         return {
             'val/loss': avg_loss, 
             'log': log 
