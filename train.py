@@ -151,6 +151,7 @@ def main():
 
     lr_logger = LearningRateMonitor() 
     tb_logger = TensorBoardLogger('logs/')
+    wandb_logger = WandbLogger(name=args.ckpt_name,project='genie', save_dir='logs/')
 
     model = GenIEModel(args)
     if args.dataset == 'RAMS':
@@ -168,7 +169,7 @@ def main():
     
 
     trainer = Trainer(
-        logger=tb_logger,
+        logger=wandb_logger,
         min_epochs=args.num_train_epochs,
         max_epochs=args.num_train_epochs, 
         gpus=args.gpus,
