@@ -67,7 +67,7 @@ class GenIEModel(pl.LightningModule):
         log = {
             'train/loss': loss, 
         } 
-        logger.info('Training loss: {}'.format(loss))
+        # logger.info('Training loss: {}'.format(loss))
         return {
             'loss': loss, 
             'log': log 
@@ -96,7 +96,7 @@ class GenIEModel(pl.LightningModule):
         log = {
             'val/loss': avg_loss,
         }
-        logger.info('Validation loss: {}'.format(avg_loss))
+        # logger.info('Validation loss: {}'.format(avg_loss))
         self.model.save_pretrained('checkpoints/{}/'.format(self.hparams.ckpt_name))
         return {
             'val/loss': avg_loss, 
