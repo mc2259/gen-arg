@@ -133,7 +133,7 @@ class RAMSDataModule(pl.LightningDataModule):
 
                         processed_ex = {
                             # 'idx': lidx, 
-                            'doc_key': ex['doc_key'],
+                            'doc_key': json.loads(ex)['doc_key'],
                             'input_token_ids':input_tokens['input_ids'],
                             'input_attn_mask': input_tokens['attention_mask'],
                             'tgt_token_ids': tgt_tokens['input_ids'],
