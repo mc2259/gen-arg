@@ -26,7 +26,6 @@ class RAMSDataModule(pl.LightningDataModule):
     
     def get_event_type(self,ex):
         evt_type = []
-        ex = json.loads(ex)
         # print(type(ex))
         # print(ex[0])
         # print(ex.keys())
@@ -41,7 +40,7 @@ class RAMSDataModule(pl.LightningDataModule):
         Input: <s> Template with special <arg> placeholders </s> </s> Passage </s>
         Output: <s> Template with arguments and <arg> when no argument is found. 
         '''
-
+        ex = json.loads(ex)
         evt_type = self.get_event_type(ex)[0]
         context_words = [w for sent in ex['sentences'] for w in sent ]
         template = ontology_dict[evt_type.replace('n/a','unspecified')]['template']
