@@ -26,7 +26,9 @@ class RAMSDataModule(pl.LightningDataModule):
     
     def get_event_type(self,ex):
         evt_type = []
-        print(ex)
+        print(type(ex))
+        print(ex[0])
+        print(ex.keys())
         print(ex['evt_triggers'])
         for evt in ex['evt_triggers']:
             for t in evt[2]:
