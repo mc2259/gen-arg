@@ -67,7 +67,7 @@ def check_coref(ex, arg_span, gold_spans):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--gen-file',type=str, default='checkpoints/gen-new-tokenization-pred/sample_predictions.jsonl')
-    parser.add_argument('--test-file', type=str,default='data/RAMS_1.0/data/test_head_coref.jsonlines')
+    parser.add_argument('--test-file', type=str,default='data/RAMS_1.0/data/test.jsonl')
     parser.add_argument('--output-file',type=str, default='test_output.jsonl')
     parser.add_argument('--ontology-file',type=str, default='aida_ontology_cleaned.csv')
     parser.add_argument('--head-only',action='store_true',default=False)
@@ -102,6 +102,7 @@ if __name__ == '__main__':
     with open(args.test_file, 'r') as f:
         for line in f:
             ex = json.loads(line.strip())
+            ex = json.loads(ex)
             ex['ref_evt_links'] = deepcopy(ex['gold_evt_links']) 
             ex['gold_evt_links'] = []
             examples[ex['doc_key']] =ex 
@@ -109,7 +110,7 @@ if __name__ == '__main__':
     
     with open(args.gen_file,'r') as f:
         for line in f:
-            pred = json.loads(line.strip()) 
+            pred = json.loads(line.strip())
             examples[pred['doc_key']]['predicted'] = pred['predicted']
             examples[pred['doc_key']]['gold'] = pred['gold']
 
@@ -131,7 +132,13 @@ if __name__ == '__main__':
         trigger_end = ex['evt_triggers'][0][1]
         doc = None 
         if args.head_only:
-            doc = nlp(' '.join(context_words))
+            if context_words:
+                cleaned_context_word = [w for w in context_words if w not in ['<tgr>','<arg>']]
+                try:
+                    doc = nlp(' '.join(cleaned_context_word).strip())
+                except:
+                    print(' '.join(cleaned_context_word))
+                    continue
 
         for argname in predicted_args:
             arg_span = find_arg_span(predicted_args[argname], context_words, 

@@ -33,9 +33,13 @@ class Scorer(object):
     Returns dict mapping doc_key -> (pred, arg, role)
     """
     def process_example(json_blob):
-      doc_key = json_blob["doc_key"]
-      gold_evt = json_blob["gold_evt_links"]
-      sents = json_blob["sentences"]
+      try:
+        dict = json.loads(json_blob)
+      except:
+        dict = json_blob
+      doc_key = dict["doc_key"]
+      gold_evt = dict["gold_evt_links"]
+      sents = dict["sentences"]
       sent_map = []
       for i, sent in enumerate(sents):
           for _ in sent:
@@ -48,7 +52,7 @@ class Scorer(object):
         return sent_start
 
       # There should only be one predicate
-      evt_triggers = json_blob["evt_triggers"]
+      evt_triggers = dict["evt_triggers"]
       assert (len(evt_triggers) == 1)
 
       evt_trigger = evt_triggers[0]
@@ -79,8 +83,9 @@ class Scorer(object):
     Returns dict mapping doc_key -> (pred, arg, role)
     """
     def process_example(json_blob):
-      doc_key = json_blob["doc_key"]
-      pred_evt = json_blob["predictions"]
+      dict = json.loads(json_blob)
+      doc_key = dict["doc_key"]
+      pred_evt = dict["predictions"]
       # There should only be one predicate
       if len(pred_evt) == 0:
         return (doc_key, [], None)
