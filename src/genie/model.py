@@ -113,7 +113,7 @@ class GenIEModel(pl.LightningModule):
                             )
         else:
             sample_output = self.model.generate(batch['input_token_ids'], do_sample=False, 
-                                max_length=30, num_return_sequences=1,num_beams=1,
+                                max_length=30, num_return_sequences=1,num_beams=1, past = None,
                             )
         
         sample_output = sample_output.reshape(batch['input_token_ids'].size(0), 1, -1)
