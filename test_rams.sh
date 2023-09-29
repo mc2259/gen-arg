@@ -8,9 +8,9 @@ python train.py --model=$MODEL --ckpt_name=$CKPT_NAME-pred \
     --load_ckpt=checkpoints/$CKPT_NAME/epoch=2-v1.ckpt \
     --dataset=RAMS \
     --eval_only \
-    --train_file=data/RAMS_1.0/data/train.jsonlines \
-    --val_file=data/RAMS_1.0/data/dev.jsonlines \
-    --test_file=data/RAMS_1.0/data/test.jsonlines \
+    --train_file=data/RAMS_1.0/data/train.jsonl \
+    --val_file=data/RAMS_1.0/data/dev.jsonl \
+    --test_file=data/RAMS_1.0/data/test.jsonl \
     --train_batch_size=2 \
     --eval_batch_size=4 \
     --learning_rate=3e-5 \
