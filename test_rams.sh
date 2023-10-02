@@ -29,12 +29,12 @@ python data/RAMS_1.0/scorer/scorer.py -g=data/RAMS_1.0/data/test.jsonlines -p=ch
 python src/genie/convert_gen_to_output.py --gen-file=checkpoints/$CKPT_NAME-pred/predictions.jsonl \
 --output-file=checkpoints/$CKPT_NAME-pred/output.jsonl --head-only
 
-python data/RAMS_1.0/scorer/scorer.py -g=data/RAMS_1.0/data/test_head.jsonlines -p=checkpoints/$CKPT_NAME-pred/output.jsonl \
+python data/RAMS_1.0/scorer/scorer.py -g=data/RAMS_1.0/data/test.jsonl -p=checkpoints/$CKPT_NAME-pred/output.jsonl \
 --reuse_gold_format --do_all > checkpoints/$CKPT_NAME-pred/head_metrics.txt 
 
 # head + coref eval 
 python src/genie/convert_gen_to_output.py --gen-file=checkpoints/$CKPT_NAME-pred/predictions.jsonl \
---test-file=data/RAMS_1.0/data/test_head_coref.jsonlines \
+--test-file=data/RAMS_1.0/data/test.jsonl \
 --output-file=checkpoints/$CKPT_NAME-pred/coref_output.jsonl --head-only --coref
 
 python data/RAMS_1.0/scorer/scorer.py -g=data/RAMS_1.0/data/test_head_coref.jsonlines -p=checkpoints/$CKPT_NAME-pred/coref_output.jsonl \
