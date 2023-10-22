@@ -1,0 +1,14 @@
+,attacker
+attacker,100
+ROLE                    CORRECT     MISSING     OVERPRED    F1
+attacker                2           11          10          16.00
+target                  0           12          6           0.00
+instrument              0           4           3           0.00
+place                   0           0           5           0.00
+TOTAL:                  2           27          24          7.27
+ -2 & 7 & 0.0 & 0.0 & 0.0 \\ [p r f1 6 gold/7 pred. ]
+ -1 & 3 & 0.0 & 0.0 & 0.0 \\ [p r f1 3 gold/3 pred. ]
+ 0 & 13 & 15.4 & 11.1 & 12.9 \\ [p r f1 18 gold/13 pred. ]
+ 1 & 0 & 0.0 & 0.0 & 0.0 \\ [p r f1 1 gold/0 pred. ]
+ 2 & 3 & 0.0 & 0.0 & 0.0 \\ [p r f1 1 gold/3 pred. ]
+Precision: 7.6923 Recall: 6.8966 F1: 7.2727
