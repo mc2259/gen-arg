@@ -1,4 +1,5 @@
 checkpoints/
 logs/
 preprocessed_*/
+.DS_Store
 __pycache__/
