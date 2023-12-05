@@ -159,7 +159,7 @@ class KAIROSDataModule(pl.LightningDataModule):
             context = self.tokenizer.tokenize(' '.join(context_words), add_prefix_space=True)
 
         output_template = re.sub(r'<arg\d>','<arg>', template )
-        output_template = output_template + 'trigger' + ' ' + trigger['text']
+        output_template = output_template + ' ' +'trigger' + ' ' + trigger['text']
         space_tokenized_template = output_template.split()
         tokenized_template = [] 
         for w in space_tokenized_template:
