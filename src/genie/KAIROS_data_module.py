@@ -43,8 +43,7 @@ class KAIROSDataModule(pl.LightningDataModule):
 
         
         template = ontology_dict[evt_type]['template']
-        input_template = re.sub(r'<arg\d>', '<arg>', template)
-        input_template = input_template +' trigger <arg>' 
+        input_template = re.sub(r'<arg\d>', '<arg>', template) 
 
         space_tokenized_input_template = input_template.split()
         tokenized_input_template = [] 
@@ -106,46 +105,46 @@ class KAIROSDataModule(pl.LightningDataModule):
         # trigger span does not include last index 
         context_words = ex['tokens']
         center_sent = trigger['sent_idx']
-        if len(context_words) > MAX_CONTEXT_LENGTH:
+        # if len(context_words) > MAX_CONTEXT_LENGTH:
 
-            cur_len = len(ex['sentences'][center_sent][0])
-            context_words = [tup[0] for tup in ex['sentences'][center_sent][0]]
-            if cur_len > MAX_CONTEXT_LENGTH:
-                # one sentence is very long
-                trigger_start = trigger['start']
-                start_idx = max(0, trigger_start- MAX_CONTEXT_LENGTH//2 )
-                end_idx = min(len(context_words), trigger_start + MAX_CONTEXT_LENGTH //2  )
-                context_words = context_words[start_idx: end_idx]
-                offset = start_idx 
+        #     cur_len = len(ex['sentences'][center_sent][0])
+        #     context_words = [tup[0] for tup in ex['sentences'][center_sent][0]]
+        #     if cur_len > MAX_CONTEXT_LENGTH:
+        #         # one sentence is very long
+        #         trigger_start = trigger['start']
+        #         start_idx = max(0, trigger_start- MAX_CONTEXT_LENGTH//2 )
+        #         end_idx = min(len(context_words), trigger_start + MAX_CONTEXT_LENGTH //2  )
+        #         context_words = context_words[start_idx: end_idx]
+        #         offset = start_idx 
 
-            else:
-                # take a sliding window 
-                left = center_sent -1 
-                right = center_sent +1 
+        #     else:
+        #         # take a sliding window 
+        #         left = center_sent -1 
+        #         right = center_sent +1 
                 
-                total_sents = len(ex['sentences'])
-                prev_len =0 
-                while cur_len >  prev_len:
-                    prev_len = cur_len 
-                    # try expanding the sliding window 
-                    if left >= 0:
-                        left_sent_tokens = [tup[0] for tup in ex['sentences'][left][0]]
-                        if cur_len + len(left_sent_tokens) <= MAX_CONTEXT_LENGTH:
-                            context_words = left_sent_tokens + context_words
-                            left -=1 
-                            cur_len += len(left_sent_tokens)
+        #         total_sents = len(ex['sentences'])
+        #         prev_len =0 
+        #         while cur_len >  prev_len:
+        #             prev_len = cur_len 
+        #             # try expanding the sliding window 
+        #             if left >= 0:
+        #                 left_sent_tokens = [tup[0] for tup in ex['sentences'][left][0]]
+        #                 if cur_len + len(left_sent_tokens) <= MAX_CONTEXT_LENGTH:
+        #                     context_words = left_sent_tokens + context_words
+        #                     left -=1 
+        #                     cur_len += len(left_sent_tokens)
                     
-                    if right < total_sents:
-                        right_sent_tokens = [tup[0] for tup in ex['sentences'][right][0]]
-                        if cur_len + len(right_sent_tokens) <= MAX_CONTEXT_LENGTH:
-                            context_words = context_words + right_sent_tokens
-                            right +=1 
-                            cur_len += len(right_sent_tokens)
-                # update trigger offset 
-                offset = sum([len(ex['sentences'][idx][0]) for idx in range(left+1)])
+        #             if right < total_sents:
+        #                 right_sent_tokens = [tup[0] for tup in ex['sentences'][right][0]]
+        #                 if cur_len + len(right_sent_tokens) <= MAX_CONTEXT_LENGTH:
+        #                     context_words = context_words + right_sent_tokens
+        #                     right +=1 
+        #                     cur_len += len(right_sent_tokens)
+        #         # update trigger offset 
+        #         offset = sum([len(ex['sentences'][idx][0]) for idx in range(left+1)])
         
             
-        assert(len(context_words) <= MAX_CONTEXT_LENGTH) 
+        # assert(len(context_words) <= MAX_CONTEXT_LENGTH) 
 
         trigger['start'] = trigger['start'] - offset 
         trigger['end'] = trigger['end'] - offset 
@@ -159,7 +158,6 @@ class KAIROSDataModule(pl.LightningDataModule):
             context = self.tokenizer.tokenize(' '.join(context_words), add_prefix_space=True)
 
         output_template = re.sub(r'<arg\d>','<arg>', template )
-        output_template = output_template + ' ' +'trigger' + ' ' + trigger['text']
         space_tokenized_template = output_template.split()
         tokenized_template = [] 
         for w in space_tokenized_template:

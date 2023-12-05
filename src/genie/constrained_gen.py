@@ -103,11 +103,10 @@ class BartConstrainedGen(PreTrainedModel):
 
 
     def prepare_inputs_for_generation(
-        self, decoder_input_ids, past, attention_mask, use_cache, encoder_outputs, input_embeds, encoder_input_ids, **kwargs):
+        self, decoder_input_ids, attention_mask, use_cache, encoder_outputs, input_embeds, encoder_input_ids, **kwargs):
         return {
             "input_ids": encoder_input_ids,  # encoder_outputs is defined. input_ids not needed
             "encoder_outputs": encoder_outputs,
-            "past_key_values": past,
             "decoder_input_ids": decoder_input_ids,
             "attention_mask": attention_mask,
             "use_cache": use_cache,  # change this to avoid caching (presumably for debugging)
@@ -642,7 +641,7 @@ class BartConstrainedGen(PreTrainedModel):
         past = None
         while cur_len < max_length:
             model_inputs = self.prepare_inputs_for_generation(
-                input_ids, past=past, attention_mask=attention_mask, use_cache=use_cache, **model_kwargs
+                input_ids, attention_mask=attention_mask, use_cache=use_cache, **model_kwargs
             )
             
             outputs = self(**model_inputs, return_dict=True) 
