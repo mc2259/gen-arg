@@ -275,7 +275,7 @@ if __name__ == '__main__':
     parser.add_argument('--train_batch_size', type=int, default=2)
     parser.add_argument('--eval_batch_size', type=int, default=4)
     parser.add_argument('--dataset', type=str, default='KAIROS')
-    parser.add_argument('--mark-trigger', action='store_true', default=True)
+    parser.add_argument('--mark-trigger', action='store_true', default=False)
     args = parser.parse_args() 
 
     dm = KAIROSDataModule(args=args)
