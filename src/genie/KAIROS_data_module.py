@@ -99,6 +99,9 @@ class KAIROSDataModule(pl.LightningDataModule):
             
 
         trigger = ex['event_mentions'][index]['trigger']
+    
+
+    
         offset = 0 
         # trigger span does not include last index 
         context_words = ex['tokens']
@@ -160,7 +163,9 @@ class KAIROSDataModule(pl.LightningDataModule):
         tokenized_template = [] 
         for w in space_tokenized_template:
             tokenized_template.extend(self.tokenizer.tokenize(w, add_prefix_space=True))
-        
+
+        print('input template:{}'.format(input_template))
+        print('output template:{}'.format(output_template))
         return tokenized_input_template, tokenized_template, context
 
     
@@ -184,8 +189,6 @@ class KAIROSDataModule(pl.LightningDataModule):
                     for line, coref_line in zip(reader, coref_reader):
                         ex = json.loads(line.strip())
                         corefs = json.loads(coref_line.strip())
-                        print(ex)
-                        print(corefs)
                         assert(ex['doc_id'] == corefs['doc_key'])
                         # mapping from entity id to information mention
                         ent2info = {} 
