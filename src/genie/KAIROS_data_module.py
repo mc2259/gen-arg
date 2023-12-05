@@ -29,7 +29,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         self.tokenizer.add_tokens([' <arg>',' <tgr>'])
     
 
-    def create_gold_gen(self, ex, ontology_dict,mark_trigger=True, index=0, ent2info=None, use_info=False):
+    def create_gold_gen(self, ex, ontology_dict,mark_trigger=False, index=0, ent2info=None, use_info=False):
         '''
         If there are multiple events per example, use index parameter.
 
@@ -44,8 +44,6 @@ class KAIROSDataModule(pl.LightningDataModule):
         
         template = ontology_dict[evt_type]['template']
         input_template = re.sub(r'<arg\d>', '<arg>', template) 
-        #Add trigger as an argument to input template
-        input_template = '<arg> ' + input_template
 
         space_tokenized_input_template = input_template.split()
         tokenized_input_template = [] 
@@ -164,7 +162,6 @@ class KAIROSDataModule(pl.LightningDataModule):
         tokenized_template = [] 
         for w in space_tokenized_template:
             tokenized_template.extend(self.tokenizer.tokenize(w, add_prefix_space=True))
-        output_template = trigger['text'] + ' ' + output_template
         print('input template:{}'.format(input_template))
         print('output template:{}'.format(output_template))
         return tokenized_input_template, tokenized_template, context

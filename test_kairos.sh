@@ -9,7 +9,6 @@ python train.py --model=$MODEL --ckpt_name=${CKPT_NAME}-pred \
     --load_ckpt=checkpoints/${CKPT_NAME}/epoch=0-v1.ckpt \
     --dataset=KAIROS \
     --eval_only \
-    --mark_trigger=false \
     --train_file=data/wikievents/train.jsonl \
     --val_file=data/wikievents/dev.jsonl \
     --test_file=data/wikievents/test.jsonl \
