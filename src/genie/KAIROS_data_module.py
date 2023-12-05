@@ -44,7 +44,8 @@ class KAIROSDataModule(pl.LightningDataModule):
         
         template = ontology_dict[evt_type]['template']
         input_template = re.sub(r'<arg\d>', '<arg>', template) 
-
+        #Add trigger as an argument to input template
+        input_template = '<tgr> ' + input_template
 
         space_tokenized_input_template = input_template.split()
         tokenized_input_template = [] 
@@ -163,7 +164,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         tokenized_template = [] 
         for w in space_tokenized_template:
             tokenized_template.extend(self.tokenizer.tokenize(w, add_prefix_space=True))
-
+        output_template = trigger['text'] + ' ' + output_template
         print('input template:{}'.format(input_template))
         print('output template:{}'.format(output_template))
         return tokenized_input_template, tokenized_template, context
