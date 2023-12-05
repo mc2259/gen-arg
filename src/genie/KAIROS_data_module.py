@@ -44,7 +44,8 @@ class KAIROSDataModule(pl.LightningDataModule):
         
         template = ontology_dict[evt_type]['template']
         input_template = re.sub(r'<arg\d>', '<arg>', template) 
-
+        #Add trigger as an argument to input template
+        input_template = '<arg> ' + input_template
 
         space_tokenized_input_template = input_template.split()
         tokenized_input_template = [] 
@@ -99,11 +100,15 @@ class KAIROSDataModule(pl.LightningDataModule):
             
 
         trigger = ex['event_mentions'][index]['trigger']
+    
+
+    
         offset = 0 
         # trigger span does not include last index 
         context_words = ex['tokens']
         center_sent = trigger['sent_idx']
         if len(context_words) > MAX_CONTEXT_LENGTH:
+
             cur_len = len(ex['sentences'][center_sent][0])
             context_words = [tup[0] for tup in ex['sentences'][center_sent][0]]
             if cur_len > MAX_CONTEXT_LENGTH:
@@ -159,7 +164,9 @@ class KAIROSDataModule(pl.LightningDataModule):
         tokenized_template = [] 
         for w in space_tokenized_template:
             tokenized_template.extend(self.tokenizer.tokenize(w, add_prefix_space=True))
-        
+        output_template = trigger['text'] + ' ' + output_template
+        print('input template:{}'.format(input_template))
+        print('output template:{}'.format(output_template))
         return tokenized_input_template, tokenized_template, context
 
     
@@ -183,8 +190,6 @@ class KAIROSDataModule(pl.LightningDataModule):
                     for line, coref_line in zip(reader, coref_reader):
                         ex = json.loads(line.strip())
                         corefs = json.loads(coref_line.strip())
-                        print(ex)
-                        print(corefs)
                         assert(ex['doc_id'] == corefs['doc_key'])
                         # mapping from entity id to information mention
                         ent2info = {} 
@@ -275,7 +280,7 @@ if __name__ == '__main__':
     parser.add_argument('--train_batch_size', type=int, default=2)
     parser.add_argument('--eval_batch_size', type=int, default=4)
     parser.add_argument('--dataset', type=str, default='KAIROS')
-    parser.add_argument('--mark-trigger', action='store_true', default=True)
+    parser.add_argument('--mark-trigger', action='store_true', default=False)
     args = parser.parse_args() 
 
     dm = KAIROSDataModule(args=args)
