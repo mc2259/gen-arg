@@ -73,7 +73,7 @@ def main():
     parser.add_argument('--input_dir', type=str, default=None)
     parser.add_argument('--coref_dir', type=str, default='data/kairos/coref_outputs')
     parser.add_argument('--use_info', action='store_true', default=False, help='use informative mentions instead of the nearest mention.')
-    parser.add_argument('--mark_trigger', action='store_true', default=True)
+    parser.add_argument('--mark_trigger', action='store_true', default=False)
     parser.add_argument('--sample-gen', action='store_true', help='Do sampling when generation.')
     parser.add_argument("--train_batch_size", default=8, type=int, help="Batch size per GPU/CPU for training.")
     parser.add_argument(

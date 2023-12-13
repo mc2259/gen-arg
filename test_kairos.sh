@@ -6,12 +6,12 @@ MODEL=constrained-gen
 
 rm -rf checkpoints/${CKPT_NAME}-pred
 python train.py --model=$MODEL --ckpt_name=${CKPT_NAME}-pred \
-    --load_ckpt=checkpoints/${CKPT_NAME}/epoch=4-v1.ckpt \
+    --load_ckpt=checkpoints/${CKPT_NAME}/epoch=1-v1.ckpt \
     --dataset=KAIROS \
     --eval_only \
-    --train_file=data/wikievents/train.jsonl \
-    --val_file=data/wikievents/dev.jsonl \
-    --test_file=data/wikievents/test.jsonl \
+    --train_file=data/wikievents/train_keyword_wikievents.jsonl \
+    --val_file=data/wikievents/dev_keyword_wikievents.jsonl \
+    --test_file=data/wikievents/test_keyword_wikievents.jsonl \
     --coref_dir=data/wikievents/coref \
     --train_batch_size=4 \
     --eval_batch_size=4 \

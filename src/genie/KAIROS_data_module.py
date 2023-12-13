@@ -104,7 +104,6 @@ class KAIROSDataModule(pl.LightningDataModule):
         offset = 0 
         # trigger span does not include last index 
         context_words = ex['tokens']
-        center_sent = trigger['sent_idx']
         # if len(context_words) > MAX_CONTEXT_LENGTH:
 
         #     cur_len = len(ex['sentences'][center_sent][0])
@@ -146,8 +145,8 @@ class KAIROSDataModule(pl.LightningDataModule):
             
         # assert(len(context_words) <= MAX_CONTEXT_LENGTH) 
 
-        trigger['start'] = trigger['start'] - offset 
-        trigger['end'] = trigger['end'] - offset 
+        trigger['start_idx'] = trigger['start_idx'] - offset 
+        trigger['end_idx'] = trigger['end_idx'] - offset 
         if mark_trigger:
             prefix = self.tokenizer.tokenize(' '.join(context_words[:trigger['start']]), add_prefix_space=True) 
             tgt = self.tokenizer.tokenize(' '.join(context_words[trigger['start']: trigger['end']]), add_prefix_space=True)
