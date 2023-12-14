@@ -12,4 +12,3 @@ python train.py --model=gen --ckpt_name='gen-RAMS' \
     --learning_rate=3e-5 \
     --accumulate_grad_batches=4 \
     --num_train_epochs=3 \
-    --mark_trigger 
