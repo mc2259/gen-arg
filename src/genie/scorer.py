@@ -167,6 +167,7 @@ if __name__ == '__main__':
         template = ontology_dict[evt_type]['template']
         # extract argument text 
         predicted_args = extract_args_from_template(ex,template, ontology_dict)
+        print("Predicted args are: ", predicted_args)
         # get trigger 
         # extract argument span
         trigger_start = ex['event']['trigger']['start']

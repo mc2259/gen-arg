@@ -167,9 +167,6 @@ class KAIROSDataModule(pl.LightningDataModule):
         return tokenized_input_template, tokenized_template, context
 
     
-
-
-            
     def prepare_data(self):
         data_dir = 'preprocessed_{}'.format(self.hparams.dataset)
         if not os.path.exists(data_dir):
