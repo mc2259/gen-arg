@@ -153,7 +153,7 @@ class KAIROSDataModule(pl.LightningDataModule):
             suffix = self.tokenizer.tokenize(' '.join(context_words[trigger['end']:]), add_prefix_space=True)
             context = prefix + [' <tgr>', ] + tgt + [' <tgr>', ] + suffix 
         else:
-            print('Not marking trigger')
+            print(" ".join(context_words[:512]))
             context = self.tokenizer.tokenize(' '.join(context_words[:512]), add_prefix_space=True)
 
         output_template = re.sub(r'<arg\d>','<arg>', template )
@@ -163,7 +163,6 @@ class KAIROSDataModule(pl.LightningDataModule):
             tokenized_template.extend(self.tokenizer.tokenize(w, add_prefix_space=True))
         # print('input template:{}'.format(input_template))
         # print('output template:{}'.format(output_template))
-        print(context)
         return tokenized_input_template, tokenized_template, context
 
     
