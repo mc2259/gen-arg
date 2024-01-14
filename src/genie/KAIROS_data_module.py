@@ -161,8 +161,9 @@ class KAIROSDataModule(pl.LightningDataModule):
         tokenized_template = [] 
         for w in space_tokenized_template:
             tokenized_template.extend(self.tokenizer.tokenize(w, add_prefix_space=True))
-        print('input template:{}'.format(input_template))
-        print('output template:{}'.format(output_template))
+        # print('input template:{}'.format(input_template))
+        # print('output template:{}'.format(output_template))
+        print(context)
         return tokenized_input_template, tokenized_template, context
 
     
