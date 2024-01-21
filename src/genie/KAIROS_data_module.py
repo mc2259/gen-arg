@@ -26,7 +26,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         super().__init__() 
         self.hparams.update(vars(args))
         self.tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
-        self.tokenizer.add_tokens([' <arg>',' <tgr>'])
+        self.tokenizer.add_tokens([' <arg>'])
     
 
     def create_gold_gen(self, ex, ontology_dict,mark_trigger=False, index=0, ent2info=None, use_info=False):
