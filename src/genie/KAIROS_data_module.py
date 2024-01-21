@@ -15,8 +15,8 @@ from .data import IEDataset, my_collate
 from .utils import load_ontology, check_pronoun, clean_mention
 
 MAX_CONTEXT_LENGTH=400 # measured in words 
-MAX_LENGTH=900
-MAX_TGT_LENGTH=900
+MAX_LENGTH=700
+MAX_TGT_LENGTH=700
 
 class KAIROSDataModule(pl.LightningDataModule):
     '''
@@ -153,7 +153,7 @@ class KAIROSDataModule(pl.LightningDataModule):
             suffix = self.tokenizer.tokenize(' '.join(context_words[trigger['end']:]), add_prefix_space=True)
             context = prefix + [' <tgr>', ] + tgt + [' <tgr>', ] + suffix 
         else:
-            context = self.tokenizer.tokenize(' '.join(context_words[:900]), add_prefix_space=True)
+            context = self.tokenizer.tokenize(' '.join(context_words[:MAX_LENGTH]), add_prefix_space=True)
 
         output_template = re.sub(r'<arg\d>','<arg>', template )
         space_tokenized_template = output_template.split()
