@@ -16,7 +16,7 @@ from .utils import load_ontology, check_pronoun, clean_mention
 
 MAX_CONTEXT_LENGTH=400 # measured in words 
 MAX_LENGTH=700
-MAX_TGT_LENGTH=700
+MAX_TGT_LENGTH=70
 
 class KAIROSDataModule(pl.LightningDataModule):
     '''
@@ -26,7 +26,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         super().__init__() 
         self.hparams.update(vars(args))
         self.tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
-        self.tokenizer.add_tokens([' <arg>'])
+        self.tokenizer.add_tokens([' <arg>',' <tgr>'])
     
 
     def create_gold_gen(self, ex, ontology_dict,mark_trigger=False, index=0, ent2info=None, use_info=False):
