@@ -175,7 +175,6 @@ def main():
         accumulate_grad_batches=args.accumulate_grad_batches,
         gradient_clip_val=args.gradient_clip_val, 
         num_sanity_val_steps=0,
-        warmup_steps= 500,
         val_check_interval=0.5, # use float to check every n epochs 
         precision=16 if args.fp16 else 32,
         log_every_n_steps=10
