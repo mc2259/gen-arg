@@ -41,16 +41,21 @@ class RAMSDataModule(pl.LightningDataModule):
         Output: <s> Template with arguments and <arg> when no argument is found. 
         '''
         ex = json.loads(ex)
-        evt_type = self.get_event_type(ex)[0]
+        ex = json.loads(ex)
         context_words = [w for sent in ex['sentences'] for w in sent ]
+        if ('evt_triggers' not in ex.keys()):
+          return "", "", self.tokenizer.tokenize(' '.join(context_words), add_prefix_space=True)
+        if(self.get_event_type(ex)==[]):
+           return "", "", self.tokenizer.tokenize(' '.join(context_words), add_prefix_space=True)
+        evt_type = self.get_event_type(ex)[0]
         template = ontology_dict[evt_type.replace('n/a','unspecified')]['template']
-        input_template = re.sub(r'<arg\d>', '<arg>', template) 
+        input_template = re.sub(r'<arg\d>', '<arg>', template)
+        input_template = '<arg> ' + input_template
         space_tokenized_input_template = input_template.split(' ')
         tokenized_input_template = [] 
         for w in space_tokenized_input_template:
             tokenized_input_template.extend(self.tokenizer.tokenize(w, add_prefix_space=True))
-        
-
+        mark_trigger = False
         for triple in ex['gold_evt_links']:
             trigger_span, argument_span, arg_name = triple 
             arg_num = ontology_dict[evt_type.replace('n/a','unspecified')][arg_name]
@@ -71,10 +76,10 @@ class RAMSDataModule(pl.LightningDataModule):
         else:
             context = self.tokenizer.tokenize(' '.join(context_words), add_prefix_space=True)
         trigger_span_start = trigger[0]
-        trigger_span_end = trigger[1] +2
+        trigger_span_end = trigger[1] +1
         trigger_text = ' '.join(context_words[trigger_span_start:trigger_span_end])
         output_template = re.sub(r'<arg\d>','<arg>', template ) 
-        output_template = ' <tgr> ' + trigger_text + ' <tgr> ' + output_template
+        output_template = trigger_text + ' ' + output_template
         print("Input template", input_template)
         print('Output template', output_template)
         space_tokenized_template = output_template.split(' ')
