@@ -65,13 +65,14 @@ class RAMSDataModule(pl.LightningDataModule):
 
         trigger = ex['evt_triggers'][0]
         if mark_trigger:
-            trigger_span_start = trigger[0]
-            trigger_span_end = trigger[1] +2 # one for inclusion, one for extra start marker 
-            prefix = self.tokenizer.tokenize(' '.join(context_words[:trigger[0]]), add_prefix_space=True) 
-            tgt = self.tokenizer.tokenize(' '.join(context_words[trigger[0]: trigger[1]+1]), add_prefix_space=True)
+            print("badd")
+            # trigger_span_start = trigger[0]
+            # trigger_span_end = trigger[1] +2 # one for inclusion, one for extra start marker 
+            # prefix = self.tokenizer.tokenize(' '.join(context_words[:trigger[0]]), add_prefix_space=True) 
+            # tgt = self.tokenizer.tokenize(' '.join(context_words[trigger[0]: trigger[1]+1]), add_prefix_space=True)
             
-            suffix = self.tokenizer.tokenize(' '.join(context_words[trigger[1]+1:]), add_prefix_space=True)
-            context = prefix + [' <tgr>', ] + tgt + [' <tgr>', ] + suffix 
+            # suffix = self.tokenizer.tokenize(' '.join(context_words[trigger[1]+1:]), add_prefix_space=True)
+            # context = prefix + [' <tgr>', ] + tgt + [' <tgr>', ] + suffix 
         else:
             context = self.tokenizer.tokenize(' '.join(context_words), add_prefix_space=True)
         trigger_span_start = trigger[0]
