@@ -41,7 +41,6 @@ class RAMSDataModule(pl.LightningDataModule):
         Output: <s> Template with arguments and <arg> when no argument is found. 
         '''
         ex = json.loads(ex)
-        ex = json.loads(ex)
         context_words = [w for sent in ex['sentences'] for w in sent ]
         if ('evt_triggers' not in ex.keys()):
           return "", "", self.tokenizer.tokenize(' '.join(context_words), add_prefix_space=True)
