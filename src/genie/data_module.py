@@ -70,8 +70,13 @@ class RAMSDataModule(pl.LightningDataModule):
             context = prefix + [' <tgr>', ] + tgt + [' <tgr>', ] + suffix 
         else:
             context = self.tokenizer.tokenize(' '.join(context_words), add_prefix_space=True)
-
+        trigger_span_start = trigger[0]
+        trigger_span_end = trigger[1] +2
+        trigger_text = ' '.join(context_words[trigger_span_start:trigger_span_end])
         output_template = re.sub(r'<arg\d>','<arg>', template ) 
+        output_template = ' <tgr> ' + trigger_text + ' <tgr> ' + output_template
+        print("Input template", input_template)
+        print('Output template', output_template)
         space_tokenized_template = output_template.split(' ')
         tokenized_template = [] 
         for w in space_tokenized_template:
@@ -114,7 +119,6 @@ class RAMSDataModule(pl.LightningDataModule):
             for split,f in [('train',self.hparams.train_file), ('val',self.hparams.val_file), ('test',self.hparams.test_file)]:
                 with open(f,'r') as reader,  open('preprocessed_data/{}.jsonl'.format(split), 'w') as writer:
                     for lidx, line in enumerate(reader):
-                        print(line.strip())
                         ex = json.loads(line.strip())
                         input_template, output_template, context= self.create_gold_gen(ex, ontology_dict, self.hparams.mark_trigger)
                         
