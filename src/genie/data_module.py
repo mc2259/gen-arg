@@ -114,6 +114,7 @@ class RAMSDataModule(pl.LightningDataModule):
             for split,f in [('train',self.hparams.train_file), ('val',self.hparams.val_file), ('test',self.hparams.test_file)]:
                 with open(f,'r') as reader,  open('preprocessed_data/{}.jsonl'.format(split), 'w') as writer:
                     for lidx, line in enumerate(reader):
+                        print(line.strip())
                         ex = json.loads(line.strip())
                         input_template, output_template, context= self.create_gold_gen(ex, ontology_dict, self.hparams.mark_trigger)
                         
