@@ -58,7 +58,7 @@ class RAMSDataModule(pl.LightningDataModule):
         for triple in ex['gold_evt_links']:
             trigger_span, argument_span, arg_name = triple 
             arg_num = ontology_dict[evt_type.replace('n/a','unspecified')][arg_name]
-            arg_text = ' '.join(context_words[argument_span[0]:argument_span[1]+1])
+            arg_text = ' and '.join(context_words[argument_span[0]:argument_span[1]+1])
 
             template = re.sub('<{}>'.format(arg_num),arg_text , template)
             
