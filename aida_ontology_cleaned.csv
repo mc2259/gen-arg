@@ -5,6 +5,8 @@ artifactexistence.damagedestroy.damage,<arg1> damaged <arg2> using <arg3> instru
 artifactexistence.damagedestroy.destroy,<arg1> destroyed <arg2> using <arg3> instrument in <arg4> place,evt003arg01destroyer,evt003arg02artifact,evt003arg03instrument,evt003arg04place,
 artifactexistence.shortage.shortage,<arg1> experienced a shortage of <arg2> supply at <arg3> place,evt149arg01experiencer ,evt149arg02supply ,evt149arg03place ,,
 conflict.attack.unspecified,<arg1> attacked <arg2> using <arg3> at <arg4> place,evt004arg01attacker,evt004arg02target,evt004arg03instrument,evt004arg04place,
+conflict.attack.kidnapping,<arg1> attacked <arg2> using <arg3> at <arg4> place,evt154arg01attacker,evt154arg02target,evt154arg03instrument,evt154arg04place,
+conflict.attack.forcedworkstoppage,<arg1> attacked <arg2> using <arg3> at <arg4> place,evt155arg01attacker,evt155arg02target,evt155arg03instrument,evt155arg04place,
 conflict.attack.airstrikemissilestrike,<arg1> attacked <arg2> using <arg3> at <arg4> place,evt005arg01attacker,evt005arg02target,evt005arg03instrument,evt005arg04place,
 conflict.attack.biologicalchemicalpoisonattack,<arg1> attacked <arg2> using <arg3> at <arg4> place,evt006arg01attacker,evt006arg02target,evt006arg03instrument,evt006arg04place,
 conflict.attack.bombing,<arg1> attacked <arg2> using <arg3> at <arg4> place,evt007arg01attacker,evt007arg02target,evt007arg03instrument,evt007arg04place,
