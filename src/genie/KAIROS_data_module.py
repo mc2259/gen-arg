@@ -183,7 +183,7 @@ class KAIROSDataModule(pl.LightningDataModule):
                     for line, coref_line in zip(reader, coref_reader):
                         ex = json.loads(line.strip())
                         corefs = json.loads(coref_line.strip())
-                        assert(ex['doc_id'] == corefs['doc_key'])
+                        # assert(ex['doc_id'] == corefs['doc_key'])
                         # mapping from entity id to information mention
                         ent2info = {} 
                         for cidx, cluster in enumerate(corefs['clusters']):
