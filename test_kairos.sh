@@ -9,7 +9,7 @@ python train.py --model=$MODEL --ckpt_name=${CKPT_NAME}-pred \
     --load_ckpt=checkpoints/${CKPT_NAME}/epoch=19-v1.ckpt \
     --dataset=KAIROS \
     --eval_only \
-    --train_file=data/wikievents/train.jsonl \
+    --train_file=data/wikievents//processed_train_gpt4.jsonl \
     --val_file=data/wikievents/dev.jsonl \
     --test_file=data/wikievents/test.jsonl \
     --coref_dir=data/wikievents/coref \

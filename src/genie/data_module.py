@@ -49,7 +49,7 @@ class RAMSDataModule(pl.LightningDataModule):
         evt_type = self.get_event_type(ex)[0]
         template = ontology_dict[evt_type.replace('n/a','unspecified')]['template']
         input_template = re.sub(r'<arg\d>', '<arg>', template)
-        input_template = '<arg> ' + input_template
+        input_template = '<arg> trigger ' + input_template
         space_tokenized_input_template = input_template.split(' ')
         tokenized_input_template = [] 
         for w in space_tokenized_input_template:
@@ -79,7 +79,7 @@ class RAMSDataModule(pl.LightningDataModule):
         trigger_span_end = trigger[1] +1
         trigger_text = ' '.join(context_words[trigger_span_start:trigger_span_end])
         output_template = re.sub(r'<arg\d>','<arg>', template ) 
-        output_template = trigger_text + ' ' + output_template
+        output_template = trigger_text + ' trigger ' + output_template
         print("Input template", input_template)
         print('Output template', output_template)
         space_tokenized_template = output_template.split(' ')

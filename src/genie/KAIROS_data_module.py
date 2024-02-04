@@ -146,11 +146,12 @@ class KAIROSDataModule(pl.LightningDataModule):
 
         # trigger['start_idx'] = trigger['start_idx'] - offset 
         # trigger['end_idx'] = trigger['end_idx'] - offset 
+        mark_trigger = True
         if mark_trigger:
-            prefix = self.tokenizer.tokenize(' '.join(context_words[:trigger['start']]), add_prefix_space=True) 
-            tgt = self.tokenizer.tokenize(' '.join(context_words[trigger['start']: trigger['end']]), add_prefix_space=True)
+            prefix = self.tokenizer.tokenize(' '.join(context_words[:trigger['start_idx']]), add_prefix_space=True) 
+            tgt = self.tokenizer.tokenize(' '.join(context_words[trigger['start_idx']: trigger['end_idx']]), add_prefix_space=True)
             
-            suffix = self.tokenizer.tokenize(' '.join(context_words[trigger['end']:]), add_prefix_space=True)
+            suffix = self.tokenizer.tokenize(' '.join(context_words[trigger['end_idx']:]), add_prefix_space=True)
             context = prefix + [' <tgr>', ] + tgt + [' <tgr>', ] + suffix 
         else:
             context = self.tokenizer.tokenize(' '.join(context_words[:MAX_LENGTH]), add_prefix_space=True)
