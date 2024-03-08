@@ -9,9 +9,9 @@ python train.py --model=$MODEL --ckpt_name=${CKPT_NAME}-pred \
     --load_ckpt=checkpoints/${CKPT_NAME}/epoch=19-v1.ckpt \
     --dataset=KAIROS \
     --eval_only \
-    --train_file=data/wikievents/train_keyword_wikievents.jsonl \
-    --val_file=data/wikievents/dev_keyword_wikievents.jsonl \
-    --test_file=data/wikievents/test_keyword_wikievents.jsonl \
+    --train_file=data/wikievents/train.json \
+    --val_file=data/wikievents/dev.json \
+    --test_file=data/wikievents/test.json \
     --coref_dir=data/wikievents/coref \
     --train_batch_size=4 \
     --eval_batch_size=4 \
