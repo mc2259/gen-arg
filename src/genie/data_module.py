@@ -55,8 +55,11 @@ class RAMSDataModule(pl.LightningDataModule):
             tokenized_input_template.extend(self.tokenizer.tokenize(w, add_prefix_space=True))
 
         for triple in ex['gold_evt_links']:
-            trigger_span, argument_span, arg_name = triple 
-            arg_num = ontology_dict[evt_type.replace('n/a','unspecified')][arg_name]
+            trigger_span, argument_span, arg_name = triple
+            try:
+                arg_num = ontology_dict[evt_type.replace('n/a','unspecified')][arg_name]
+            except:
+                continue
             arg_text = ' and '.join(context_words[argument_span[0]:argument_span[1]+1])
 
             template = re.sub('<{}>'.format(arg_num),arg_text , template)
