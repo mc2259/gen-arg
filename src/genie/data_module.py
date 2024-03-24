@@ -97,8 +97,13 @@ class RAMSDataModule(pl.LightningDataModule):
     def load_ontology(self):
         # read ontology 
         ontology_dict = load_ontology('KAIROS')
+        keys_to_modify = []
         for key in ontology_dict.keys():
             new_key = key.split(".")[0] + "." + key.split(".")[1]
+            if new_key != key:
+                keys_to_modify.append((key, new_key))
+
+        for key, new_key in keys_to_modify:
             ontology_dict[new_key] = ontology_dict.pop(key)
         # ontology_dict ={} 
         # with open('aida_ontology_cleaned.csv','r') as f:
