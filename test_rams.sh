@@ -5,7 +5,7 @@ CKPT_NAME=gen-RAMS
 MODEL=gen
 
 python train.py --model=$MODEL --ckpt_name=$CKPT_NAME-pred \
-    --load_ckpt=checkpoints/$CKPT_NAME/epoch=2-v1.ckpt \
+    --load_ckpt=checkpoints/$CKPT_NAME/epoch=39-v1.ckpt \
     --dataset=RAMS \
     --eval_only \
     --train_file=data/RAMS_1.0/data/train.jsonl \
