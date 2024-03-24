@@ -1,7 +1,46 @@
-event_type,template,arg1,arg2,arg3,arg4,arg5,arg6
-attack,<arg1> identified the attack event where the attacker <arg2> associated with the organization <arg3> attacked <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-bombing,<arg1> identified the bombing event where the bomber <arg2> associated with the organization <arg3> bombed <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-kidnapping,<arg1> identified the kidnapping event where the kidnapper <arg2> associated with the organization <arg3> kidnapped <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-arson,<arg1> identified the arson attack event where the arsonist <arg2> associated with the organization <arg3> burned down <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-forced work stoppage,<arg1> identified the forced work stopage event where the perpetrator <arg2> associated with the organization <arg3> stopped the work in <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-robbery,<arg1> identified the robbery event where the robber <arg2> associated with the organization <arg3> robbed <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
+event_type,template,arg1,arg2,arg3,arg4,arg5
+artifactexistence.artifactfailure,<arg1> mechanical artifact failed due to <arg2> instrument at <arg3> place,evt152arg01mechanicalartifact ,evt152arg02instrument ,evt152arg03place ,
+artifactexistence.damagedestroy,<arg1> damaged or destroyed <arg2> using <arg3> instrument in <arg4> place,evt001arg01damagerdestroyer,evt001arg02artifact,evt001arg03instrument,evt001arg04place,
+artifactexistence.shortage,<arg1> experienced a shortage of <arg2> supply at <arg3> place,evt149arg01experiencer ,evt149arg02supply ,evt149arg03place,
+conflict.attack,<arg1> attacked <arg2> using <arg3> at <arg4> place,evt004arg01attacker,evt004arg02target,evt004arg03instrument,evt004arg04place,
+conflict.coup,<arg1> was deposed by <arg2> at <arg3> place,evt151arg01deposedentity ,evt151arg02deposingentity,evt151arg03place,
+conflict.demonstrate,<arg1> was in a demonstration at <arg2> place,evt016arg01demonstrator,evt016arg02place,
+conflict.yield,<arg1> yielded to <arg2> at <arg3> place,evt018arg01yielder,evt018arg02recipient,evt018arg03place,
+contact.collaborate,<arg1> communicated with <arg2> at <arg3> place,evt021arg01participant,evt021arg02participant,evt021arg03place,
+contact.commandorder,<arg1> communicated with <arg2> about <arg4> topic at <arg3> place,evt024arg01communicator,evt024arg02recipient,evt024arg03place,evt024arg04topic,
+contact.commitmentpromiseexpressintent,<arg1> communicated with <arg2> about <arg4> topic at <arg3> place,evt028arg01communicator,evt028arg02recipient,evt028arg03place,evt028arg04topic,
+contact.discussion,<arg1> communicated with <arg2> at <arg3> place,evt032arg01participant,evt032arg02participant,evt032arg03place,
+contact.funeralvigil,<arg1> communicated with <arg2> during a funeral or vigil for <arg3> at <arg4> place,evt035arg01participant,evt035arg02participant,evt035arg03deceased,evt035arg04place,
+contact.mediastatement,<arg1> communicated with <arg2> at <arg3> place,evt037arg01communicator,evt037arg02recipient,evt037arg03place,
+contact.negotiate,<arg1> communicated with <arg2> about <arg4> topic at <arg3> place,evt039arg01participant,evt039arg02participant,evt039arg03place,evt039arg04topic,
+contact.prevarication,<arg1> communicated with <arg2> about <arg4> topic at <arg3> place,evt042arg01communicator,evt042arg02recipient,evt042arg03place,evt042arg04topic,
+contact.publicstatementinperson,<arg1> communicated with <arg2> at <arg3> place,evt046arg01communicator,evt046arg02recipient,evt046arg03place,
+contact.requestadvise,<arg1> communicated with <arg2> about <arg4> topic at <arg3> place,evt048arg01communicator,evt048arg02recipient,evt048arg03place,evt048arg04topic,
+contact.threatencoerce,<arg1> communicated with <arg2> about <arg4> topic at <arg3> place,evt052arg01communicator,evt052arg02recipient,evt052arg03place,evt052arg04topic,
+disaster.accidentcrash,<arg1> person in <arg2> vehicle crashed into <arg3> at <arg4> place,evt057arg01driverpassenger,evt057arg02vehicle,evt057arg03crashobject,evt057arg04place,
+disaster.diseaseoutbreak,<arg1> disease broke out among <arg2> victims or population at <arg3> place,evt148arg01disease ,evt148arg02victim ,evt148arg03place,
+disaster.fireexplosion,<arg1> caught fire or exploded from <arg2> instrument at <arg3> place,evt059arg01fireexplosionobject,evt059arg02instrument,evt059arg03place,
+genericcrime.genericcrime,<arg1> committed a crime against <arg2> at <arg3> place,evt154arg01perpetrator ,evt154arg02victim ,evt154arg03place,
+government.agreements,<arg1> and <arg2> signed an agreement in <arg3> place,evt060arg01participant,evt060arg02participant,evt060arg03place,
+government.convene,<arg1> convened <arg2> at <arg3> place,evt145arg01convener ,evt145arg02convenedthing ,evt145arg03place,
+government.formation,<arg1> was formed by <arg2> in <arg3> place,evt064arg01gpe,evt064arg02founder,evt064arg03place,
+government.spy,<arg1> spied on <arg2> to the benefit of <arg3> in <arg4> place,evt070arg01spy,evt070arg02observedentity,evt070arg03beneficiary,evt070arg04place,
+government.vote,<arg1> voted for <arg2> on <arg3> ballot with <arg4> results in <arg5> place,evt071arg01voter,evt071arg02candidate,evt071arg03ballot,evt071arg04result,evt071arg05place,
+inspection.sensoryobserve,<arg1> observed <arg2> in <arg3> place,evt074arg01observer,evt074arg02observedentity,evt074arg03place,
+inspection.targetaimat,<arg1> physically targeted <arg2> with <arg3> instrument at <arg4> place,evt153arg01targeter ,evt153arg02target ,evt153arg03instrument ,evt153arg04place,
+justice.arrestjaildetain,<arg1> arrested or jailed <arg2> for <arg3> crime at <arg4> place,evt079arg01jailer,evt079arg02detainee,evt079arg03crime,evt079arg04place,
+justice.initiatejudicialprocess,<arg1> initiated judicial process pertaining to <arg2> before <arg3> court or judge for <arg4> crime in <arg5> place,evt080arg01prosecutor,evt080arg02defendant,evt080arg03judgecourt,evt080arg04crime,evt080arg05place,
+justice.investigate,<arg1> investigated <arg2> in <arg3> place,evt083arg01investigator,evt083arg02defendant,evt083arg03place,,
+justice.judicialconsequences,"<arg1> court or judge decided consequences of <arg3> crime, committed by <arg2>, in <arg4> place",evt085arg01judgecourt,evt085arg02defendant,evt085arg03crime,evt085arg04place,
+life.die,"<arg1> died at <arg2> place from <arg4> medical issue, killed by <arg3> killer",evt089arg01victim,evt089arg02place,evt089arg03killer,evt089arg04medicalissue,
+life.injure,<arg1> was injured by <arg2> with <arg4> medical issue at <arg3> place,evt092arg01victim,evt092arg02injurer,evt092arg03place,evt092arg04medicalissue,
+manufacture.artifact,<arg1> manufactured or created or produced <arg2> using <arg3> at <arg4> place,evt096arg01manufacturer,evt096arg02artifact,evt096arg03instrument,evt096arg04place,
+medical.intervention,<arg1> treater treated <arg2> patient for <arg3> medical issue with <arg4> means at <arg5> place,evt147arg01treater ,evt147arg02patient ,evt147arg03medicalissue,evt147arg04instrument,evt147arg05place,
+movement.transportartifact,<arg1> transported <arg2> in <arg3> from <arg4> place to <arg5> place,evt100arg01transporter,evt100arg02artifact,evt100arg03vehicle,evt100arg04origin,evt100arg05destination,
+movement.transportperson,<arg1> transported <arg2> in <arg3> from <arg4> place to <arg5> place,evt112arg01transporter,evt112arg02passenger,evt112arg03vehicle,evt112arg04origin,evt112arg05destination,
+personnel.elect,<arg1> elected <arg2> in <arg3> place,evt123arg01voter,evt123arg02candidate,evt123arg03place,
+personnel.endposition,<arg1> stopped working at <arg2> in <arg3> place,evt125arg01employee,evt125arg02placeofemployment,evt125arg03place,
+personnel.startposition,<arg1> started working at <arg2> in <arg3> place,evt128arg01employee,evt128arg02placeofemployment,evt128arg03place,
+transaction.transaction,A transaction occurred between <arg1> and <arg2> for the benefit of <arg3> at <arg4> place,evt130arg01participant,evt130arg02participant,evt130arg03beneficiary,evt130arg04place,
+transaction.transfermoney,<arg1> gave <arg4> money to <arg2> for the benefit of <arg3> at <arg5> place,evt133arg01giver,evt133arg02recipient,evt133arg03beneficiary,evt133arg04money,evt133arg05place,
+transaction.transferownership,<arg1> gave <arg4> to <arg2> for the benefit of <arg3> at <arg5> place,evt139arg01giver,evt139arg02recipient,evt139arg03beneficiary,evt139arg04artifact,evt139arg05place
