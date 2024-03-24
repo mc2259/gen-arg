@@ -8,7 +8,8 @@ import argparse
 import transformers 
 from transformers import BartTokenizer
 import torch 
-from torch.utils.data import DataLoader 
+from torch.utils.data import DataLoader
+from .utils import load_ontology
 import pytorch_lightning as pl 
 
 from .data import IEDataset, my_collate
@@ -95,25 +96,29 @@ class RAMSDataModule(pl.LightningDataModule):
 
     def load_ontology(self):
         # read ontology 
-        ontology_dict ={} 
-        with open('aida_ontology_cleaned.csv','r') as f:
-            for lidx, line in enumerate(f):
-                if lidx == 0:# header 
-                    continue 
-                fields = line.strip().split(',') 
-                if len(fields) < 2:
-                    break 
-                evt_type = fields[0]
-                args = fields[2:]
+        ontology_dict = load_ontology('KAIROS')
+        for key in ontology_dict.keys():
+            new_key = key.split(".")[0] + "." + key.split(".")[1]
+            ontology_dict[new_key] = ontology_dict.pop(key)
+        # ontology_dict ={} 
+        # with open('aida_ontology_cleaned.csv','r') as f:
+        #     for lidx, line in enumerate(f):
+        #         if lidx == 0:# header 
+        #             continue 
+        #         fields = line.strip().split(',') 
+        #         if len(fields) < 2:
+        #             break 
+        #         evt_type = fields[0]
+        #         args = fields[2:]
                 
-                ontology_dict[evt_type] = {
-                        'template': fields[1]
-                    }
+        #         ontology_dict[evt_type] = {
+        #                 'template': fields[1]
+        #             }
                 
-                for i, arg in enumerate(args):
-                    if arg !='':
-                        ontology_dict[evt_type]['arg{}'.format(i+1)] = arg 
-                        ontology_dict[evt_type][arg] = 'arg{}'.format(i+1)
+        #         for i, arg in enumerate(args):
+        #             if arg !='':
+        #                 ontology_dict[evt_type]['arg{}'.format(i+1)] = arg 
+        #                 ontology_dict[evt_type][arg] = 'arg{}'.format(i+1)
         
         return ontology_dict 
 
