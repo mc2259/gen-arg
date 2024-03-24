@@ -141,6 +141,7 @@ def main():
         mode='min',
         save_weights_only=True,
         every_n_epochs=1,
+        save_top_k = -1,
         filename='{epoch}', # this cannot contain slashes 
 
     )
