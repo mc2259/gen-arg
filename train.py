@@ -140,9 +140,7 @@ def main():
         dirpath=args.ckpt_dir,
         mode='min',
         save_weights_only=True,
-        every_n_epochs=1,
-        save_top_k = 8,
-        monitor='val_loss',
+        every_n_epochs=2,
         filename='{epoch}', # this cannot contain slashes 
 
     )
