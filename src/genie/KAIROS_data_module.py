@@ -198,7 +198,7 @@ class KAIROSDataModule(pl.LightningDataModule):
                             for eid in cluster:
                                 ent2info[eid] = corefs['informative_mentions'][cidx]
                             
-
+                        
                         for i in range(len(ex['event_mentions'])):
                             if split=='train' and len(ex['event_mentions'][i]['arguments']) ==0:
                                 # skip mentions with no arguments 
