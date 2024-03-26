@@ -170,7 +170,15 @@ class KAIROSDataModule(pl.LightningDataModule):
         data_dir = 'preprocessed_{}'.format(self.hparams.dataset)
         if not os.path.exists(data_dir):
             os.makedirs(data_dir)
-            ontology_dict = load_ontology(self.hparams.dataset) 
+            ontology_dict = load_ontology(self.hparams.dataset)
+            keys_to_modify = []
+            for key in ontology_dict.keys():
+                new_key = key.split(".")[0] + "." + key.split(".")[1]
+                if new_key != key:
+                    keys_to_modify.append((key, new_key))
+
+            for key, new_key in keys_to_modify:
+                ontology_dict[new_key] = ontology_dict.pop(key)
             max_tokens = 0
             max_tgt =0 
 
