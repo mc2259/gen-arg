@@ -204,7 +204,7 @@ class KAIROSDataModule(pl.LightningDataModule):
                                 # skip mentions with no arguments 
                                 continue 
                             evt_type = ex['event_mentions'][i]['event_type']
-
+                            # if event type has more than 2 dots, remove one
                             if evt_type not in ontology_dict: # should be a rare event type 
                                 continue 
                             
