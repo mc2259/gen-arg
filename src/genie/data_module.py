@@ -131,7 +131,8 @@ class RAMSDataModule(pl.LightningDataModule):
         #             if arg !='':
         #                 ontology_dict[evt_type]['arg{}'.format(i+1)] = arg 
         #                 ontology_dict[evt_type][arg] = 'arg{}'.format(i+1)
-        print(ontology_dict[ontology_dict.keys()[0]])
+        first_key, first_value = ontology_dict.items()[0]
+        print("Ontology", first_key, first_value)
         return ontology_dict 
 
     def prepare_data(self):
