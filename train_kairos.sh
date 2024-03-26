@@ -8,9 +8,9 @@ rm -rf checkpoints/${CKPT_NAME}
 # does not use informative mentions 
 python3 train.py --model=constrained-gen --ckpt_name=${CKPT_NAME} \
     --dataset=KAIROS \
-    --train_file=data/wikievents/train.json \
-    --val_file=data/wikievents/dev.json \
-    --test_file=data/wikievents/test.json \
+    --train_file=data/wikievents/train.jsonl \
+    --val_file=data/wikievents/dev.jsonl \
+    --test_file=data/wikievents/test.jsonl \
     --train_batch_size=2 \
     --eval_batch_size=4 \
     --learning_rate=3e-5 \
