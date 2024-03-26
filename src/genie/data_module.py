@@ -105,6 +105,13 @@ class RAMSDataModule(pl.LightningDataModule):
 
         for key, new_key in keys_to_modify:
             ontology_dict[new_key] = ontology_dict.pop(key)
+
+        for key in ontology_dict.keys():
+            args = ontology_dict[key]['roles']
+            for i, arg in enumerate(args):
+                if arg != '':
+                    ontology_dict[key]['arg{}'.format(i+1)] = arg 
+                    ontology_dict[key][arg] = 'arg{}'.format(i+1)
         # ontology_dict ={} 
         # with open('aida_ontology_cleaned.csv','r') as f:
         #     for lidx, line in enumerate(f):
