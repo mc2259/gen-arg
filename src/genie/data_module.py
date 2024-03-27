@@ -96,43 +96,43 @@ class RAMSDataModule(pl.LightningDataModule):
 
     def load_ontology(self):
         # read ontology 
-        ontology_dict = load_ontology('KAIROS')
-        keys_to_modify = []
-        for key in ontology_dict.keys():
-            new_key = key.split(".")[0] + "." + key.split(".")[1]
-            if new_key != key:
-                keys_to_modify.append((key, new_key))
+        # ontology_dict = load_ontology('KAIROS')
+        # keys_to_modify = []
+        # for key in ontology_dict.keys():
+        #     new_key = key.split(".")[0] + "." + key.split(".")[1]
+        #     if new_key != key:
+        #         keys_to_modify.append((key, new_key))
 
-        for key, new_key in keys_to_modify:
-            ontology_dict[new_key] = ontology_dict.pop(key)
+        # for key, new_key in keys_to_modify:
+        #     ontology_dict[new_key] = ontology_dict.pop(key)
 
-        for key in ontology_dict.keys():
-            args = ontology_dict[key]['roles']
-            for i, arg in enumerate(args):
-                if arg != '':
-                    ontology_dict[key]['arg{}'.format(i+1)] = arg 
-                    ontology_dict[key][arg] = 'arg{}'.format(i+1)
-        # ontology_dict ={} 
-        # with open('aida_ontology_cleaned.csv','r') as f:
-        #     for lidx, line in enumerate(f):
-        #         if lidx == 0:# header 
-        #             continue 
-        #         fields = line.strip().split(',') 
-        #         if len(fields) < 2:
-        #             break 
-        #         evt_type = fields[0]
-        #         args = fields[2:]
+        # for key in ontology_dict.keys():
+        #     args = ontology_dict[key]['roles']
+        #     for i, arg in enumerate(args):
+        #         if arg != '':
+        #             ontology_dict[key]['arg{}'.format(i+1)] = arg 
+        #             ontology_dict[key][arg] = 'arg{}'.format(i+1)
+        ontology_dict ={} 
+        with open('aida_ontology_cleaned.csv','r') as f:
+            for lidx, line in enumerate(f):
+                if lidx == 0:# header 
+                    continue 
+                fields = line.strip().split(',') 
+                if len(fields) < 2:
+                    break 
+                evt_type = fields[0]
+                args = fields[2:]
                 
-        #         ontology_dict[evt_type] = {
-        #                 'template': fields[1]
-        #             }
+                ontology_dict[evt_type] = {
+                        'template': fields[1]
+                    }
                 
-        #         for i, arg in enumerate(args):
-        #             if arg !='':
-        #                 ontology_dict[evt_type]['arg{}'.format(i+1)] = arg 
-        #                 ontology_dict[evt_type][arg] = 'arg{}'.format(i+1)
+                for i, arg in enumerate(args):
+                    if arg !='':
+                        ontology_dict[evt_type]['arg{}'.format(i+1)] = arg 
+                        ontology_dict[evt_type][arg] = 'arg{}'.format(i+1)
         first_key, first_value = next(iter(ontology_dict.items()))
-        print("Ontology", first_key, first_value)
+        # print("Ontology", first_key, first_value)
         return ontology_dict 
 
     def prepare_data(self):
