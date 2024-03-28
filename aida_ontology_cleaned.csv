@@ -26,8 +26,8 @@ Justice.ReleaseParole,<arg1> court or judge released or paroled <arg2> from <arg
 Justice.Sentence,<arg1> court or judge sentenced <arg2> for <arg3> crime to <arg4> sentence in <arg5> place,JudgeCourt,Defendant,Crime,Sentence,Place,
 Justice.TrialHearing,<arg1> tried <arg2> before <arg3> court or judge for <arg4> crime in <arg5> place,Prosecutor,Defendant,JudgeCourt,Crime,Place,
 Life.Consume,<arg1> consumed <arg2> at <arg3> place,ConsumingEntity,ConsumedThing,Place,
-Life.Die,<arg1> died at <arg2> place from <arg4> medical issue, killed by <arg3> killer,Victim,Place,Killer,MedicalIssue,
-Life.Illness,<arg1> has <arg3> sickness or illness at <arg4> place, deliberately infected by <arg2>,Victim,DeliberateInjurer,Disease,Place,
+Life.Die,<arg1> died at <arg2> place from <arg4> medical issue killed by <arg3> killer,Victim,Place,Killer,MedicalIssue,
+Life.Illness,<arg1> has <arg3> sickness or illness at <arg4> place deliberately infected by <arg2>,Victim,DeliberateInjurer,Disease,Place,
 Life.Infect,<arg1> was infected with <arg2> from <arg3> at <arg4> place,Victim,InfectingAgent,Source,Place,
 Life.Injure,<arg1> was injured by <arg2> using <arg3> in <arg4> body part with <arg5> medical issue at <arg6> place,Victim,Injurer,Instrument,BodyPart,MedicalCondition,Place,
 Medical.Diagnosis,<arg1> treater diagnosed <arg2> patient with <arg3> symptom for <arg4> medical issue at <arg5> place,Treater,Patient,SymptomSign,MedicalCondition,Place,
@@ -37,4 +37,4 @@ Movement.Transportation,<arg1> transported <arg2> in <arg3> from <arg4> place to
 Personnel.EndPosition,<arg1> stopped working in <arg3> position at <arg2> organization in <arg4> place,Employee,PlaceOfEmployment,Position,Place,
 Personnel.StartPosition,<arg1> started working in <arg3> position at <arg2> organization in <arg4> place,Employee,PlaceOfEmployment,Position,Place,
 Transaction.Donation,<arg1> gave <arg4> to <arg2> for the benefit of <arg3> at <arg5> place,Giver,Recipient,Beneficiary,ArtifactMoney,Place,
-Transaction.ExchangeBuySell,<arg1> bought, sold, or traded <arg2> to <arg3> in exchange for <arg4> for the benefit of <arg5> at <arg6> place,Giver,Recipient,AcquiredEntity,PaymentBarter,Beneficiary,Place
+Transaction.ExchangeBuySell,<arg1> bought sold or traded <arg2> to <arg3> in exchange for <arg4> for the benefit of <arg5> at <arg6> place,Giver,Recipient,AcquiredEntity,PaymentBarter,Beneficiary,Place
