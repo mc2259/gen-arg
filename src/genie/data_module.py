@@ -62,8 +62,10 @@ class RAMSDataModule(pl.LightningDataModule):
             except:
                 continue
             arg_text = ' and '.join(context_words[argument_span[0]:argument_span[1]+1])
+            # print(arg_text)
 
             template = re.sub('<{}>'.format(arg_num),arg_text , template)
+            # print(template)
             
 
         trigger = ex['evt_triggers'][0]

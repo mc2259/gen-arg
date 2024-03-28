@@ -1,7 +1,0 @@
-event_type,template,arg1,arg2,arg3,arg4,arg5,arg6
-attack,<arg1> identified the attack event where the attacker <arg2> associated with the organization <arg3> attacked <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-bombing,<arg1> identified the bombing event where the bomber <arg2> associated with the organization <arg3> bombed <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-kidnapping,<arg1> identified the kidnapping event where the kidnapper <arg2> associated with the organization <arg3> kidnapped <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-arson,<arg1> identified the arson attack event where the arsonist <arg2> associated with the organization <arg3> burned down <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-forced work stoppage,<arg1> identified the forced work stopage event where the perpetrator <arg2> associated with the organization <arg3> stopped the work in <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
-robbery,<arg1> identified the robbery event where the robber <arg2> associated with the organization <arg3> robbed <arg4> or <arg5> using <arg6>,Triggers,PerpInd,PerpOrg,Target,Victim,Weapon
