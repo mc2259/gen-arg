@@ -183,7 +183,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         #             ontology_dict[key]['arg{}'.format(i+1)] = arg 
         #             ontology_dict[key][arg] = 'arg{}'.format(i+1)
         ontology_dict ={} 
-        with open('aida_ontology_cleaned.csv','r') as f:
+        with open('aida_ontology_cleaned_muc.csv','r') as f:
             for lidx, line in enumerate(f):
                 if lidx == 0:# header 
                     continue 
