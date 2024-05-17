@@ -167,7 +167,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         return tokenized_input_template, tokenized_template, context
     def load_ontology(self):
         # read ontology 
-        # ontology_dict = load_ontology('KAIROS')
+        ontology_dict = load_ontology('MUC')
         # keys_to_modify = []
         # for key in ontology_dict.keys():
         #     new_key = key.split(".")[0] + "." + key.split(".")[1]
@@ -183,26 +183,26 @@ class KAIROSDataModule(pl.LightningDataModule):
         #         if arg != '':
         #             ontology_dict[key]['arg{}'.format(i+1)] = arg 
         #             ontology_dict[key][arg] = 'arg{}'.format(i+1)
-        ontology_dict ={} 
-        with open('aida_ontology_cleaned_muc.csv','r') as f:
-            for lidx, line in enumerate(f):
-                if lidx == 0:# header 
-                    continue 
-                fields = line.strip().split(',') 
-                if len(fields) < 2:
-                    break 
-                evt_type = fields[0]
-                args = fields[2:]
+        # ontology_dict ={} 
+        # with open('aida_ontology_cleaned_muc.csv','r') as f:
+        #     for lidx, line in enumerate(f):
+        #         if lidx == 0:# header 
+        #             continue 
+        #         fields = line.strip().split(',') 
+        #         if len(fields) < 2:
+        #             break 
+        #         evt_type = fields[0]
+        #         args = fields[2:]
                 
-                ontology_dict[evt_type] = {
-                        'template': fields[1]
-                    }
+        #         ontology_dict[evt_type] = {
+        #                 'template': fields[1]
+        #             }
                 
-                for i, arg in enumerate(args):
-                    if arg !='':
-                        ontology_dict[evt_type]['arg{}'.format(i+1)] = arg 
-                        ontology_dict[evt_type][arg] = 'arg{}'.format(i+1)
-        first_key, first_value = next(iter(ontology_dict.items()))
+        #         for i, arg in enumerate(args):
+        #             if arg !='':
+        #                 ontology_dict[evt_type]['arg{}'.format(i+1)] = arg 
+        #                 ontology_dict[evt_type][arg] = 'arg{}'.format(i+1)
+        # first_key, first_value = next(iter(ontology_dict.items()))
         # print("Ontology", first_key, first_value)
         return ontology_dict 
     
@@ -271,7 +271,7 @@ class KAIROSDataModule(pl.LightningDataModule):
 
                             processed_ex = {
                                 'event_idx': i, 
-                                'doc_key': ex['doc_id'], 
+                                'doc_key': ex['docid'], 
                                 'input_token_ids':input_tokens['input_ids'],
                                 'input_attn_mask': input_tokens['attention_mask'],
                                 'tgt_token_ids': tgt_tokens['input_ids'],
