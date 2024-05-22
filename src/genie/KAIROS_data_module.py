@@ -241,7 +241,8 @@ class KAIROSDataModule(pl.LightningDataModule):
                         
                         for i in range(len(ex['event_mentions'])):
                             if split=='train' and len(ex['event_mentions'][i]['arguments']) ==0:
-                                # skip mentions with no arguments 
+                                # skip mentions with no arguments
+                                print('Skipping mention with no arguments')
                                 continue 
                             evt_type = ex['event_mentions'][i]['event_type']
                             # if event type has more than 2 dots, remove one
