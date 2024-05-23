@@ -228,15 +228,15 @@ class KAIROSDataModule(pl.LightningDataModule):
                 coref_split = 'dev' if split=='val' else split 
                 coref_reader = open(os.path.join(self.hparams.coref_dir, '{}.jsonlines'.format(coref_split)))
                 with open(f,'r') as reader,  open(os.path.join(data_dir,'{}.jsonl'.format(split)), 'w') as writer:
-                    for line, coref_line in zip(reader, coref_reader):
+                    for line in reader:
                         ex = json.loads(line.strip())
-                        corefs = json.loads(coref_line.strip())
+                        # corefs = json.loads(coref_line.strip())
                         # assert(ex['doc_id'] == corefs['doc_key'])
                         # mapping from entity id to information mention
-                        ent2info = {} 
-                        for cidx, cluster in enumerate(corefs['clusters']):
-                            for eid in cluster:
-                                ent2info[eid] = corefs['informative_mentions'][cidx]
+                        # ent2info = {} 
+                        # for cidx, cluster in enumerate(corefs['clusters']):
+                        #     for eid in cluster:
+                        #         ent2info[eid] = corefs['informative_mentions'][cidx]
                             
                         
                         for i in range(len(ex['event_mentions'])):
@@ -250,7 +250,7 @@ class KAIROSDataModule(pl.LightningDataModule):
                                 continue 
                             
                             input_template, output_template, context= self.create_gold_gen(ex, ontology_dict, self.hparams.mark_trigger, 
-                                index=i, ent2info=ent2info, use_info=self.hparams.use_info)
+                                index=i, ent2info={}, use_info=self.hparams.use_info)
                             
                             
                             max_tokens = max(len(context) + len(input_template) +2, max_tokens)
