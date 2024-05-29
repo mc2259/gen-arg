@@ -16,7 +16,7 @@ from .utils import load_ontology, check_pronoun, clean_mention
 
 MAX_CONTEXT_LENGTH=400 # measured in words 
 MAX_LENGTH=900
-MAX_TGT_LENGTH=70
+MAX_TGT_LENGTH=200
 
 class KAIROSDataModule(pl.LightningDataModule):
     '''
