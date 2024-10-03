@@ -102,44 +102,44 @@ class KAIROSDataModule(pl.LightningDataModule):
         offset = 0 
         # trigger span does not include last index 
         context_words = ex['tokens']
-        center_sent = trigger['sent_idx']
-        if len(context_words) > MAX_CONTEXT_LENGTH:
+        # center_sent = trigger['sent_idx']
+        # if len(context_words) > MAX_CONTEXT_LENGTH:
 
-            cur_len = len(ex['sentences'][center_sent][0])
-            context_words = [tup[0] for tup in ex['sentences'][center_sent][0]]
-            if cur_len > MAX_CONTEXT_LENGTH:
-                # one sentence is very long
-                trigger_start = trigger['start']
-                start_idx = max(0, trigger_start- MAX_CONTEXT_LENGTH//2 )
-                end_idx = min(len(context_words), trigger_start + MAX_CONTEXT_LENGTH //2  )
-                context_words = context_words[start_idx: end_idx]
-                offset = start_idx 
+        #     cur_len = len(ex['sentences'][center_sent][0])
+        #     context_words = [tup[0] for tup in ex['sentences'][center_sent][0]]
+        #     if cur_len > MAX_CONTEXT_LENGTH:
+        #         # one sentence is very long
+        #         trigger_start = trigger['start']
+        #         start_idx = max(0, trigger_start- MAX_CONTEXT_LENGTH//2 )
+        #         end_idx = min(len(context_words), trigger_start + MAX_CONTEXT_LENGTH //2  )
+        #         context_words = context_words[start_idx: end_idx]
+        #         offset = start_idx 
 
-            else:
-                # take a sliding window 
-                left = center_sent -1 
-                right = center_sent +1 
+        #     else:
+        #         # take a sliding window 
+        #         left = center_sent -1 
+        #         right = center_sent +1 
                 
-                total_sents = len(ex['sentences'])
-                prev_len =0 
-                while cur_len >  prev_len:
-                    prev_len = cur_len 
-                    # try expanding the sliding window 
-                    if left >= 0:
-                        left_sent_tokens = [tup[0] for tup in ex['sentences'][left][0]]
-                        if cur_len + len(left_sent_tokens) <= MAX_CONTEXT_LENGTH:
-                            context_words = left_sent_tokens + context_words
-                            left -=1 
-                            cur_len += len(left_sent_tokens)
+        #         total_sents = len(ex['sentences'])
+        #         prev_len =0 
+        #         while cur_len >  prev_len:
+        #             prev_len = cur_len 
+        #             # try expanding the sliding window 
+        #             if left >= 0:
+        #                 left_sent_tokens = [tup[0] for tup in ex['sentences'][left][0]]
+        #                 if cur_len + len(left_sent_tokens) <= MAX_CONTEXT_LENGTH:
+        #                     context_words = left_sent_tokens + context_words
+        #                     left -=1 
+        #                     cur_len += len(left_sent_tokens)
                     
-                    if right < total_sents:
-                        right_sent_tokens = [tup[0] for tup in ex['sentences'][right][0]]
-                        if cur_len + len(right_sent_tokens) <= MAX_CONTEXT_LENGTH:
-                            context_words = context_words + right_sent_tokens
-                            right +=1 
-                            cur_len += len(right_sent_tokens)
-                # update trigger offset 
-                offset = sum([len(ex['sentences'][idx][0]) for idx in range(left+1)])
+        #             if right < total_sents:
+        #                 right_sent_tokens = [tup[0] for tup in ex['sentences'][right][0]]
+        #                 if cur_len + len(right_sent_tokens) <= MAX_CONTEXT_LENGTH:
+        #                     context_words = context_words + right_sent_tokens
+        #                     right +=1 
+        #                     cur_len += len(right_sent_tokens)
+        #         # update trigger offset 
+        #         offset = sum([len(ex['sentences'][idx][0]) for idx in range(left+1)])
         
             
         assert(len(context_words) <= MAX_CONTEXT_LENGTH) 
