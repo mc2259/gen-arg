@@ -14,6 +14,6 @@ python3 train.py --model=constrained-gen --ckpt_name=${CKPT_NAME} \
     --train_batch_size=2 \
     --eval_batch_size=4 \
     --learning_rate=3e-5 \
-    --accumulate_grad_batches=8 \
-    --num_train_epochs=20 \
+    --accumulate_grad_batches=2 \
+    --num_train_epochs=5 \
     --coref_dir=data/wikievents/coref

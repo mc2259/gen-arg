@@ -44,14 +44,14 @@
   "Conflict": {
     "event_id": "LDC_KAIROS_evt_006",
     "template": "<arg1> attacked <arg2> in <arg3> on <arg4>",
-    "i-label": 6,
+    "i-label": 7,
     "keywords": ["attack"],
     "roles": ["Subject", "Object", "Location", "Date"]
   },
   "Injure": {
     "event_id": "LDC_KAIROS_evt_006",
     "template": "<arg1> injured <arg2> in <arg3> on <arg4>",
-    "i-label": 6,
+    "i-label": 8,
     "keywords": ["attack"],
     "roles": ["Subject", "Quantity", "Location", "Date"]
   }
