@@ -1,0 +1,58 @@
+{
+  "Experiment": {
+    "event_id": "LDC_KAIROS_evt_001",
+    "template": "<arg1> experimented with <arg2> in <arg3> on <arg4>",
+    "i-label": 1,
+    "keywords": ["attack"],
+    "roles": ["Subject", "Equipment", "Location", "Date"]
+  },
+  "Manoeuvre": {
+    "event_id": "LDC_KAIROS_evt_002",
+    "template": "<arg1> manoeuvered <arg2> from <arg3> on <arg4>",
+    "i-label": 2,
+    "keywords": ["attack"],
+    "roles": ["Subject", "Content", "Area", "Date"]
+  },
+  "Deploy": {
+    "event_id": "LDC_KAIROS_evt_003",
+    "template": "<arg1> deployed <arg2> on <arg3> on <arg4>",
+    "i-label": 3,
+    "keywords": ["attack"],
+    "roles": ["Subject", "Militaryforce", "Location", "Date"]
+  },
+  "Support": {
+    "event_id": "LDC_KAIROS_evt_004",
+    "template": "<arg1> supported <arg2> using <arg3> on <arg4>",
+    "i-label": 4,
+    "keywords": ["attack"],
+    "roles": ["Subject", "Object", "Materials", "Date"]
+  },
+  "Accident": {
+    "event_id": "LDC_KAIROS_evt_005",
+    "template": "<arg1> accidentally caused <arg2> in <arg3> on <arg4>.",
+    "i-label": 5,
+    "keywords": ["attack"],
+    "roles": ["Subject", "Result", "Location", "Date"]
+  },
+  "Exhibit": {
+    "event_id": "LDC_KAIROS_evt_006",
+    "template": "<arg1> shown <arg2> in <arg3> on <arg4>",
+    "i-label": 6,
+    "keywords": ["attack"],
+    "roles": ["Subject", "Equipment", "Location", "Date"]
+  },
+  "Conflict": {
+    "event_id": "LDC_KAIROS_evt_006",
+    "template": "<arg1> attacked <arg2> in <arg3> on <arg4>",
+    "i-label": 6,
+    "keywords": ["attack"],
+    "roles": ["Subject", "Object", "Location", "Date"]
+  },
+  "Injure": {
+    "event_id": "LDC_KAIROS_evt_006",
+    "template": "<arg1> injured <arg2> in <arg3> on <arg4>",
+    "i-label": 6,
+    "keywords": ["attack"],
+    "roles": ["Subject", "Quantity", "Location", "Date"]
+  }
+}
