@@ -92,7 +92,7 @@ class KAIROSDataModule(pl.LightningDataModule):
                     arg_idx2text[arg_idx].append(arg_text)
                 
         for arg_idx, text_list in arg_idx2text.items():
-            text = ' and '.join(text_list)
+            text = ' <SEP> '.join(text_list)
             template = re.sub('<{}>'.format(arg_idx), text, template)
 
         trigger = ex['event_mentions'][index]['trigger']
