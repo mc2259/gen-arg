@@ -287,7 +287,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         dataset = IEDataset('preprocessed_{}/train.jsonl'.format(self.hparams.dataset))
         
         dataloader = DataLoader(dataset, 
-            pin_memory=True, num_workers=2, 
+            pin_memory=True, num_workers=8, 
             collate_fn=my_collate,
             batch_size=self.hparams.train_batch_size, 
             shuffle=True)
@@ -297,14 +297,14 @@ class KAIROSDataModule(pl.LightningDataModule):
     def val_dataloader(self):
         dataset = IEDataset('preprocessed_{}/val.jsonl'.format(self.hparams.dataset))
         
-        dataloader = DataLoader(dataset, pin_memory=True, num_workers=2, 
+        dataloader = DataLoader(dataset, pin_memory=True, num_workers=8, 
             collate_fn=my_collate,
             batch_size=self.hparams.eval_batch_size, shuffle=False)
         return dataloader
 
     def test_dataloader(self):
         dataset = IEDataset('preprocessed_{}/test.jsonl'.format(self.hparams.dataset))
-        dataloader = DataLoader(dataset, pin_memory=True, num_workers=2, 
+        dataloader = DataLoader(dataset, pin_memory=True, num_workers=8, 
             collate_fn=my_collate, 
             batch_size=self.hparams.eval_batch_size, shuffle=False)
 
