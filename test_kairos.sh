@@ -9,15 +9,15 @@ python train.py --model=$MODEL --ckpt_name=${CKPT_NAME}-pred \
     --load_ckpt=checkpoints/${CKPT_NAME}/epoch=19-v1.ckpt \
     --dataset=KAIROS \
     --eval_only \
-    --train_file=data/wikievents/train.json \
-    --val_file=data/wikievents/dev.json \
-    --test_file=data/wikievents/test.json \
+    --train_file=data/wikievents/train-keyword.jsonl \
+    --val_file=data/wikievents/dev-keyword.jsonl \
+    --test_file=data/wikievents/test-keyword.jsonl \
     --coref_dir=data/wikievents/coref \
     --train_batch_size=4 \
     --eval_batch_size=4 \
     --learning_rate=3e-5 \
     --accumulate_grad_batches=4 \
-    --num_train_epochs=3
+    --num_train_epochs=1
 
 python src/genie/scorer.py --gen-file=checkpoints/$CKPT_NAME-pred/predictions.jsonl \
 --test-file=data/wikievents/test.jsonl \
