@@ -14,7 +14,7 @@ import pytorch_lightning as pl
 from .data import IEDataset, my_collate
 from .utils import load_ontology, check_pronoun, clean_mention
 
-MAX_CONTEXT_LENGTH=400 # measured in words 
+MAX_CONTEXT_LENGTH=700 # measured in words 
 MAX_LENGTH=1024
 MAX_TGT_LENGTH=200
 
