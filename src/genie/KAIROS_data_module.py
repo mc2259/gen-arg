@@ -166,7 +166,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         return tokenized_input_template, tokenized_template, context
     def load_ontology(self):
         # read ontology 
-        ontology_dict = load_ontology('CMNEE')
+        ontology_dict = load_ontology('MUC')
         # keys_to_modify = []
         # for key in ontology_dict.keys():
         #     new_key = key.split(".")[0] + "." + key.split(".")[1]
