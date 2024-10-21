@@ -142,7 +142,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         #         offset = sum([len(ex['sentences'][idx][0]) for idx in range(left+1)])
         
             
-        assert(len(context_words) <= MAX_CONTEXT_LENGTH) 
+        # assert(len(context_words) <= MAX_CONTEXT_LENGTH) 
 
         trigger['start_idx'] = trigger['start_idx'] - offset 
         trigger['end_idx'] = trigger['end_idx'] - offset
@@ -166,7 +166,7 @@ class KAIROSDataModule(pl.LightningDataModule):
         return tokenized_input_template, tokenized_template, context
     def load_ontology(self):
         # read ontology 
-        ontology_dict = load_ontology('MUC')
+        ontology_dict = load_ontology('KAIROS')
         # keys_to_modify = []
         # for key in ontology_dict.keys():
         #     new_key = key.split(".")[0] + "." + key.split(".")[1]
@@ -203,6 +203,9 @@ class KAIROSDataModule(pl.LightningDataModule):
         #                 ontology_dict[evt_type][arg] = 'arg{}'.format(i+1)
         # first_key, first_value = next(iter(ontology_dict.items()))
         # print("Ontology", first_key, first_value)
+        for key in list(ontology_dict.keys()):
+          new_key = key.split(".")[0] + "." + key.split(".")[1]
+          ontology_dict[new_key] = ontology_dict.pop(key)
         return ontology_dict 
     
     def prepare_data(self):
